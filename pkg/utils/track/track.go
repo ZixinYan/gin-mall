@@ -67,12 +67,14 @@ func GetParentSpan(spanName string, traceId string, header http.Header) (opentra
 		opentracing.HTTPHeaders,
 		opentracing.HTTPHeadersCarrier(header),
 	)
-
-	parentSpan := opentracing.StartSpan(
-		spanName,
-		ext.RPCServerOption(wireContext))
 	if err != nil {
 		return nil, err
 	}
-	return parentSpan, err
+
+	parentSpan := opentracing.StartSpan(
+		spanName,
+		ext.RPCServerOption(wireContext),
+	)
+	return parentSpan, nil
+
 }

@@ -194,7 +194,7 @@ func (s *UserSrv) SendEmail(ctx context.Context, req *types.SendEmailServiceReq)
 	sender := email.NewEmailSender()
 	address = conf.Config.Email.ValidEmail + token
 	mailText := fmt.Sprintf(consts.EmailOperationMap[req.OperationType], address)
-	if err = sender.Send(mailText, req.Email, "FanOneMall"); err != nil {
+	if err = sender.Send(mailText, req.Email, "杂鱼商城邮箱绑定"); err != nil {
 		log.LogrusObj.Error(err)
 		return
 	}
